@@ -11,7 +11,10 @@ bot_client.on("ready", () => {
 
 bot_client.on("message", (message) => {
   console.log(`[${message.author.tag}]: ${message.content}`);
-  
+
+  if (message.content === "hello") {
+    message.channel.send("Hellooo !!");
+  }
 });
 //connect into discord
 bot_client.login(process.env.DISCORDJS_BOT_TOKEN);
