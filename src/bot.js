@@ -11,7 +11,6 @@ bot_client.on("ready", () => {
 });
 
 bot_client.on("message", (message) => {
-  console.log(`[${message.author.tag}]: ${message.content}`);
   if (message.author.bot) return;
   if (message.content.startsWith(PREFIX)) {
     // an intersting effect for the spread op here
@@ -19,9 +18,8 @@ bot_client.on("message", (message) => {
     const [CMD_NAME, ...args] = message.content
       .trim()
       .substring(PREFIX.length)
-      .split(" ");
-    console.log("CMD_NAME", CMD_NAME);
-    console.log(args);
+      //match all white spaces
+      .split(/\s+/);
   }
 });
 //connect into discord
