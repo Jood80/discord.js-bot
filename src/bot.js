@@ -20,6 +20,31 @@ bot_client.on("message", (message) => {
       .substring(PREFIX.length)
       //match all white spaces
       .split(/\s+/);
+
+    if (CMD_NAME === "kick") {
+      if (!message.member.hasPermission("KICK_MEMBERS"))
+        return message.reply("You do not have permissions to use that command");
+      if (args.length === 0)
+        return message.reply(
+          "Please, provide an ID to that dude who you want to KICKKK OUT 😈"
+        );
+      //cashe ~= map
+      const member = message.guild.members.cache.get(args[0]);
+      if (member) {
+        member
+          .kick()
+          .then((member) => {
+            message.channel.send(`${member} was the IMPOSTER 🤫`);
+          })
+          .catch((err) =>
+            message.channel.send(
+              `Ooh! it seems that ${member} is a VIP member,I don't have any permission to kick her away. You need to do that on yourown my Queen 😓🤷`
+            )
+          );
+      } else {
+        message.channel.send("Pardon!! This user is nooot found SADLY");
+      }
+    }
   }
 });
 //connect into discord
