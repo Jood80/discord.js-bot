@@ -12,6 +12,10 @@ bot_client.on("ready", () => {
 
 bot_client.on("message", async (message) => {
   if (message.author.bot) return;
+  if (message.content.toLowerCase() === "hello")
+    return message.channel.send(
+      `hello ${message.member.user.username}, زارتنا البركة 😁 what I can do for yo?`
+    );
   if (message.content.startsWith(PREFIX)) {
     // an intersting effect for the spread op here
     // + for the curly bracketse instead of squares at line 19
