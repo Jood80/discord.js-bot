@@ -10,7 +10,7 @@ bot_client.on("ready", () => {
   console.log(`${bot_client.user.tag} has logged in.`);
 });
 
-bot_client.on("message", (message) => {
+bot_client.on("message", async (message) => {
   if (message.author.bot) return;
   if (message.content.startsWith(PREFIX)) {
     // an intersting effect for the spread op here
@@ -51,7 +51,14 @@ bot_client.on("message", (message) => {
         return message.reply(
           "Please, provide an ID to that dude who you want to BANNED 😈"
         );
-      message.guild.members.ban(args[0]).catch((err) => console.log(err));
+      try {
+        const user = await message.guild.members.ban(args[0]);
+        message.channel.send("Hoorayy,User has been banned successfully");
+      } catch (err) {
+        message.channel.send(
+          "Sorryyy, An error occured. Either I do not have permissions or the user was not found."
+        );
+      }
     }
   }
 });
