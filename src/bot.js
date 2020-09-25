@@ -44,6 +44,14 @@ bot_client.on("message", (message) => {
       } else {
         message.channel.send("Pardon!! This user is nooot found SADLY");
       }
+    } else if (CMD_NAME === "ban") {
+      if (!message.member.hasPermission("BAN_MEMBERS"))
+        return message.reply("You do not have permissions to use that command");
+      if (args.length === 0)
+        return message.reply(
+          "Please, provide an ID to that dude who you want to BANNED 😈"
+        );
+      message.guild.members.ban(args[0]).catch((err) => console.log(err));
     }
   }
 });
