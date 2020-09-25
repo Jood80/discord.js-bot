@@ -11,9 +11,11 @@ bot_client.on("ready", () => {
 
 bot_client.on("message", (message) => {
   console.log(`[${message.author.tag}]: ${message.content}`);
-
+  // That's would prevent an infinite replay for hello case below
+  if (message.author.bot) return;
   if (message.content === "hello") {
-    message.channel.send("Hellooo !!");
+    //send a message back to the channel
+    message.channel.send("hello");
   }
 });
 //connect into discord
